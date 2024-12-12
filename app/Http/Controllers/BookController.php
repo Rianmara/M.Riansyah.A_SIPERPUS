@@ -119,6 +119,44 @@ class BookController extends Controller
         
     }
 
+    // Controller untuk kelola kode rak buku
+
+    public function managebookshelves(){
+        $data['bookshelves'] = Bookshelf::get();
+        return view("manage-books.index", $data);
+    }
+
+    public function managebookshelves_add(Request $rq){
+        $data = $rq->validate([
+            "code" => "required",
+            "name" => "required",
+        ]);
+        $bookshelve = Bookshelf::create($data);
+        if (!$bookshelve) return redirect()->back()->with("failed", "Update Failed");
+        return redirect()->back();
+    }
+    public function managebookshelves_edit(Request $rq, $id){
+        $bookshelve = Bookshelf::findOrFail($id);
+        if (!$bookshelve) return redirect()->back()->with("failed", "Update Failed");
+        $bookshelve->update([
+            "id" => $id,
+            "code" => $rq->code,
+            "name" => $rq->name,
+        ]);
+        return redirect()->back();
+    }
+    public function managebookshelves_delete($id){
+        $bookshelve = Bookshelf::findOrFail($id);
+        if (!$bookshelve) return redirect()->back()->with("failed", "Update Failed");
+        $bookshelve->delete();
+        return redirect()->back();
+    }
+
+    public function managebookshelves_print(){
+        $data['bookshelves'] = Bookshelf::get();
+        $pdf = Pdf::loadView('manage-books.print',$data);
+        return $pdf->download('bookshelves.pdf'); 
+    }
 }
 
 

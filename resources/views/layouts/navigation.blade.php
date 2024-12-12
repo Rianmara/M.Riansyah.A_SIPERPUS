@@ -20,14 +20,17 @@
                         <x-nav-link :href="route('book')" :active="request()->routeIs('book')">
                             {{ __('List Buku') }}
                         </x-nav-link>
-                    @endhasrole
-                    
-                    @hasrole('pustakawan')
+                        @endhasrole
+                        
+                        @hasrole('pustakawan')
                         <x-nav-link :href="route('book')" :active="request()->routeIs('book')">
                             {{ __('List Buku') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('book')" :active="request()->routeIs('book')">
+                        <x-nav-link :href="route('book')" :active="request()->routeIs('list-user')">
                             {{ __('List User') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('book.manage-bookshelves')" :active="request()->routeIs('book.manage-bookshelves')">
+                            {{ __('Kelola Kode Rak') }}
                         </x-nav-link>
                     @endhasrole
                 </div>

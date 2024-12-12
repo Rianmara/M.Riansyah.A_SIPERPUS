@@ -8,4 +8,8 @@ class Bookshelf extends Model
 {
     protected $table = 'bookshelves';
     public $timestamps = false;
+    protected $fillable = [
+        'code',
+        'name',
+    ];
 }

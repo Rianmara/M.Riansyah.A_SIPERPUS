@@ -29,6 +29,12 @@ Route::group(['middleware' => ['role:pustakawan']], function () {
     Route::get('/book/print', [BookController::class, 'print'])->name('book.print');
     Route::get('/book/export', [BookController::class, 'export'])->name('book.export');
     Route::post('/book/import', [BookController::class, 'import'])->name('book.import');
+    // Route untuk kelola bookshelves
+    Route::get('/book/manage-bookshelves', [BookController::class, 'managebookshelves'])->name('book.manage-bookshelves');
+    Route::get('/book/manage-bookshelves/print', [BookController::class, 'managebookshelves_print'])->name('book.manage-bookshelves.print');
+    Route::post('/book/manage-bookshelves', [BookController::class, 'managebookshelves_add'])->name('book.manage-bookshelves.add');
+    Route::patch('/book/manage-bookshelves/{id}', [BookController::class, 'managebookshelves_edit'])->name('book.manage-bookshelves.edit');
+    Route::delete('/book/manage-bookshelves/{id}', [BookController::class, 'managebookshelves_delete'])->name('book.manage-bookshelves.delete');
 });
 
 require __DIR__.'/auth.php';
