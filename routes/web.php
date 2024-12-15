@@ -35,6 +35,7 @@ Route::group(['middleware' => ['role:pustakawan']], function () {
     Route::post('/book/manage-bookshelves', [BookController::class, 'managebookshelves_add'])->name('book.manage-bookshelves.add');
     Route::patch('/book/manage-bookshelves/{id}', [BookController::class, 'managebookshelves_edit'])->name('book.manage-bookshelves.edit');
     Route::delete('/book/manage-bookshelves/{id}', [BookController::class, 'managebookshelves_delete'])->name('book.manage-bookshelves.delete');
+    //eror
 });
 
 require __DIR__.'/auth.php';
